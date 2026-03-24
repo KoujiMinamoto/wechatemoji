@@ -1,6 +1,8 @@
 # WeChat Emoji Generator
 
-一个 Claude Code Skill，输入角色描述或参考图片，自动生成一整套微信风格表情包。支持静态 PNG 和动态 GIF，透明背景，开箱即用。
+输入角色描述或参考图片，自动生成一整套微信风格表情包。支持静态 PNG 和动态 GIF，透明背景，开箱即用。
+
+支持 **Claude Code** 和 **OpenClaw** 两种 AI 编程助手。
 
 ## Features
 
@@ -57,7 +59,10 @@ export PPIO_API_KEY=your_ppio_api_key
 
 API 来自 [PPIO](https://ppio.com)，使用 Gemini 3 Pro（图片生成）和 Sora 2（视频生成）。
 
-### 3. 在 Claude Code 中使用
+### 3. 使用
+
+<details>
+<summary><b>Claude Code</b></summary>
 
 ```bash
 # 进入项目目录
@@ -84,12 +89,33 @@ cd wechatemoji
 /sticker 一只蓝色小鲸鱼 --gif-only "嗨,开心,再见"
 ```
 
+</details>
+
+<details>
+<summary><b>OpenClaw</b></summary>
+
+```bash
+# 方式一：手动安装
+cp -r openclaw/wechat-sticker ~/.openclaw/skills/wechat-sticker
+
+# 方式二：直接在 OpenClaw 聊天中粘贴本仓库链接，自动安装
+
+# 然后输入：
+/sticker 一只圆滚滚的橘色小猫，大眼睛，短尾巴
+/sticker 一只绿色小恐龙 --gif --count 8
+```
+
+</details>
+
 ## 项目结构
 
 ```
 wechatemoji/
 ├── .claude/skills/
-│   └── sticker.md              # Skill 定义（核心 prompt）
+│   └── sticker.md              # Claude Code Skill 定义
+├── openclaw/wechat-sticker/
+│   ├── SKILL.md                # OpenClaw Skill 定义
+│   └── scripts/                # 脚本副本（独立运行）
 ├── scripts/
 │   ├── generate_stickers.sh    # 静态图生成（Gemini 3 Pro API）
 │   ├── generate_animated_sticker.sh  # 动态图生成（Sora 2 API）
